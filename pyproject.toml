@@ -67,8 +67,10 @@ target-version = ["py310"]
 
 [tool.ruff]
 line-length = 88
-extend-select = ["B", "C4", "I", "UP"]
 target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F"]
 exclude = ["uv.lock"]
 
 [tool.mypy]
