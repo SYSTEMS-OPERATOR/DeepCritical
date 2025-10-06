@@ -33,6 +33,7 @@ jobs:
         run: uv run mypy .
 
       - name: Check for circular imports
+        if: matrix.python-version != '3.13'
         run: uv run pycycle DeepResearch
 
       - name: Run tests with coverage
