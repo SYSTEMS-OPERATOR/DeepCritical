@@ -1,0 +1,31 @@
+site_name: DeepCritical
+repo_url: https://github.com/SYSTEMS-OPERATOR/DeepCritical
+nav:
+  - Overview: index.md
+  - Architecture:
+      - Graph & Nodes: architecture/graph.md
+      - Agents & Tools: architecture/agents-tools.md
+  - Flows:
+      - PRIME: flows/prime.md
+      - Bioinformatics: flows/bioinformatics.md
+      - DeepSearch: flows/deepsearch.md
+  - Configuration: configuration.md
+  - CLI: cli.md
+  - Developer Guide: developer.md
+  - API Reference:
+      - DeepResearch Package: api/deepresearch.md
+theme:
+  name: material
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: false
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true

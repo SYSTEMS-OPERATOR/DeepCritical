@@ -1,0 +1,23 @@
+name: Codex Exec (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: 'Codex task prompt'
+        required: true
+        default: 'update CHANGELOG for next release'
+
+jobs:
+  codex-exec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Codex CLI
+        run: npm install -g @openai/codex@native
+
+      - name: Run Codex (non-interactive)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: codex exec --full-auto "${{ github.event.inputs.prompt }}"

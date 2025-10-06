@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Contributing guidelines and code of conduct
 - Repository settings configuration
 - Dependabot configuration for automated dependency updates
+- CODEX project directive (`AGENTS.md`) describing documentation, CI, and testing guardrails
+- MkDocs documentation skeleton with architecture, flow, CLI, and API reference pages
+- Offline-friendly pytest scaffolding for CLI smoke tests, configuration validation, graph routing, and tool registry behaviour
+- GitHub Actions pipeline powered by uv with lint, mypy, circular import checks, tests, coverage upload, and docs build job
+- Manual "Codex Exec" workflow for running codex tasks in CI
 
 ### Changed
 - Enhanced project documentation structure
