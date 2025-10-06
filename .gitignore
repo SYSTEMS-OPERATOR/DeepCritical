@@ -1,7 +1,8 @@
 example
 .cursor
 outputs
-docs
+.mkdocs-build/
+site/
 .claude/
 test_artifacts/
 bandit-report.json

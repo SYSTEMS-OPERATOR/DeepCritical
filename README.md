@@ -99,6 +99,17 @@ python -m deepresearch.app
 python -m deepresearch.app question="What are PRIME's core contributions?"
 ```
 
+## 📚 Documentation
+
+DeepCritical ships with a MkDocs site that expands on the concepts in this README. Build or serve it locally with uv:
+
+```bash
+uv sync --all-extras
+uv run mkdocs serve
+```
+
+The rendered site is sourced from the `docs/` directory and includes architecture notes, flow walkthroughs, and API references generated via mkdocstrings.
+
 ### 3) PRIME Flow (Protein Engineering)
 
 #### Using uv (Recommended)
@@ -382,8 +393,10 @@ DeepCritical/
 │   ├── config.yaml        # Main configuration
 │   ├── prompts/           # Prompt templates
 │   └── statemachines/     # Flow configurations
-├── docs/                  # Documentation
-│   └── bioinformatics_integration.md
+├── docs/                  # MkDocs documentation source
+│   ├── architecture/
+│   ├── flows/
+│   └── api/
 └── .cursor/rules/         # Cursor rules for development
 ```
 

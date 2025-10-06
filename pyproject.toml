@@ -28,6 +28,15 @@ dev = [
   "pytest>=7.0.0",
   "pytest-asyncio>=0.21.0",
   "pytest-cov>=4.0.0",
+  "black>=24.4.0",
+  "mypy>=1.11.0",
+  "pip-audit>=2.7.0",
+  "bandit>=1.7.0",
+  "pycycle>=0.6.0",
+  "mkdocs>=1.6.0",
+  "mkdocs-material>=9.5.0",
+  "mkdocstrings>=0.25.0",
+  "mkdocstrings-python>=1.10.0",
 ]
 
 [project.scripts]
@@ -49,7 +58,43 @@ dev = [
   "pytest>=7.0.0",
   "pytest-asyncio>=0.21.0",
   "pytest-cov>=4.0.0",
+  "black>=24.4.0",
+  "mypy>=1.11.0",
+  "pip-audit>=2.7.0",
   "bandit>=1.7.0",
+  "pycycle>=0.6.0",
+  "mkdocs>=1.6.0",
+  "mkdocs-material>=9.5.0",
+  "mkdocstrings>=0.25.0",
+  "mkdocstrings-python>=1.10.0",
 ]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 88
+extend-select = ["B", "C4", "I", "UP"]
+exclude = ["uv.lock"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+strict = true
+
+[tool.pytest.ini_options]
+addopts = "-q -ra"
+xfail_strict = true
+filterwarnings = [
+  "default",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["DeepResearch"]
+
+[tool.coverage.report]
+fail_under = 80
 
 
