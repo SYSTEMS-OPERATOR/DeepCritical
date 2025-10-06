@@ -2,6 +2,17 @@
 
 A comprehensive research automation platform that replicates the PRIME (Protein Research Intelligent Multi-Agent Environment) architecture for autonomous scientific discovery workflows.
 
+## 📚 Documentation
+
+This repository now ships with a MkDocs site located in `docs/`. Build the documentation locally with:
+
+```bash
+uv sync
+uv run mkdocs serve
+```
+
+The site covers architecture, flow guides, configuration patterns, CLI usage, developer practices, and auto-generated API reference pages.
+
 ## 🚀 Quickstart
 
 ### Using uv (Recommended)
