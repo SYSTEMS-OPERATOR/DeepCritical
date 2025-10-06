@@ -1,19 +1,58 @@
 # DeepCritical Overview
 
-DeepCritical is a Hydra-configured, Pydantic Graph powered research agent that implements PRIME-style multi-stage workflows for scientific discovery. The project combines structured tool orchestration, autonomous reasoning loops, and reproducible configuration management so that teams can run advanced experiments locally or in CI.
+DeepCritical is a Hydra-configured research automation stack that wires Pydantic Graph
+state machines together with Pydantic AI agents and an extensible tool registry. It
+implements the PRIME (Protein Research Intelligent Multi-Agent Environment) workflow so
+that complex biological and open-ended research questions can be decomposed, executed,
+and synthesised deterministically. The same orchestration primitives also power
+DeepSearch-style web research, a configurable challenge mode, and multiple REACT
+variants exposed via the `deepresearch` CLI.
 
-## Highlights
+## Key Capabilities
 
-- **Hydra configuration** for switching between single-step REACT, nested orchestration, and loss-driven optimisation modes.
-- **Pydantic Graph orchestration** that captures state transitions across parser, planner, executor, and evaluator nodes.
-- **Pydantic AI agents** with a shared tool registry designed for deterministic offline testing.
-- **Flow presets** for PRIME protein engineering, bioinformatics data fusion, deep web research, and experimental challenge modes.
+- **Graph-first orchestration.** The runtime graph defined in
+  `DeepResearch.app` coordinates planning, execution, synthesis, and
+  specialised flows through explicit nodes and edges so behaviour is easy to audit and
+  extend.
+- **Agent specialisation.** Parser, planner, and executor agents encapsulate
+  Pydantic AI prompts and maintain their own execution history, making it simple to
+  reuse them across flows or swap in custom tools.
+- **Tool registry and execution history.** PRIME tool specifications, mock runners, and
+  adaptive execution history tracking live in dedicated utility modules to keep core
+  workflows deterministic for local development and CI.
+- **Configuration overlays.** Hydra configuration packages toggle PRIME,
+  Bioinformatics, DeepSearch, and orchestration scenarios without touching code, and
+  additional overrides can be layered per run.
 
-## Getting Started
+## Quick Start
 
-1. Install dependencies with `uv sync`.
-2. Run the CLI entrypoint: `uv run deepresearch question="What is deep research?"`.
-3. Explore configuration examples in [`configs/`](../configs/).
-4. Review the rest of this documentation for architectural deep-dives and workflow recipes.
+```bash
+# Install dependencies and create a virtual environment
+uv sync
 
-For quick CLI recipes and configuration toggles see the [CLI guide](cli.md) and [Configuration](configuration.md) sections.
+# Ask a question using the default configuration
+uv run deepresearch question="What is deep research?"
+
+# Switch to the multi-level REACT loop
+uv run deepresearch app_mode=multi_level_react question="Map the DeepCritical stack"
+
+# Enable the PRIME workflow
+uv run deepresearch flows.prime.enabled=true question="Design a novel protein binder"
+```
+
+When you are ready to customise flows, browse the [Configuration guide](configuration.md)
+for Hydra override patterns and additional config groups.
+
+## Documentation Roadmap
+
+- Learn how nodes hand off state and invoke agents in
+  [Graph & Nodes](architecture/graph.md).
+- Explore the agent layer, tool registry, and execution history utilities in
+  [Agents & Tools](architecture/agents-tools.md).
+- Review scenario-specific guidance in the [Flows](flows/prime.md) section.
+- Understand CLI usage patterns and debugging strategies in the [CLI guide](cli.md).
+- Follow the [Developer Guide](developer.md) for environment setup and contribution
+  practices.
+
+Each page includes cross-links back to relevant source modules so you can go from
+conceptual overviews to implementation details quickly.

@@ -1,36 +1,64 @@
 # Developer Guide
 
-This guide documents local development conventions so new contributors can be productive quickly.
+This guide captures the day-to-day workflows for contributing to DeepCritical.
 
-## Environment setup
+## Environment Setup
 
 ```bash
+# Install dependencies using uv (creates .venv automatically)
 uv sync
+
+# Activate the environment for ad-hoc commands
+source .venv/bin/activate  # or `uv run <cmd>` to execute without activation
+```
+
+Use Python 3.10 or newer. The repository tracks dependencies in `pyproject.toml` and
+`uv.lock` for reproducibility.
+
+## Formatting and Linting
+
+- `uv run ruff check .`
+- `uv run black .`
+- `uv run mypy --config-file pyproject.toml`
+
+CI runs these checks automatically; keeping them green locally reduces review friction.
+
+## Running Tests
+
+The test suite is designed to run fully offline. Execute a focused subset or the entire
+suite with:
+
+```bash
 uv run pytest
 ```
 
-- Use `uv run` to execute tooling (pytest, ruff, mypy, mkdocs).
-- The repository pins dependencies through `pyproject.toml` and `uv.lock`.
+Slow or networked scenarios should be marked appropriately so they can be skipped in CI.
 
-## Coding standards
+## Documentation Workflow
 
-- Format with `black` and lint with `ruff`.
-- Type-check with `mypy --strict` (ignoring third-party imports via configuration).
-- Write docstrings using Google or NumPy style to render cleanly in mkdocstrings.
+MkDocs powers the documentation site:
 
-## Testing strategy
+```bash
+# Build the site once
+uv run mkdocs build
 
-- Keep new tests offline by default; mark network or slow tests with `@pytest.mark.slow`.
-- Use fixtures in `tests/conftest.py` for fake models or Hydra overrides.
-- Maintain coverage at or above 80% for core packages.
+# Start a live-reload server on localhost:8000
+uv run mkdocs serve -a localhost:8000
+```
 
-## Documentation workflow
+Docs live under `docs/` and the navigation is configured in `mkdocs.yml`. mkdocstrings is
+enabled for future API reference pages—add `::: module.path` directives where you want
+API documentation to appear.
 
-- Edit content in `docs/` and build locally with `uv run mkdocs serve` or `uv run mkdocs build`.
-- Reference modules in the API reference using `mkdocstrings` directives (see `docs/api/deepresearch.md`).
-- Include screenshots in PRs when visual changes are made to the documentation site.
+## Making Changes
 
-## Automation
+1. Create a feature branch (`codex/docs-*` is the preferred prefix for documentation
+   updates).
+2. Commit logically grouped changes with descriptive messages.
+3. Update `CHANGELOG.md` under the “Unreleased” section when user-facing behaviour
+   changes.
+4. Open a pull request and include relevant screenshots or logs if you touched the docs or
+   CI.
 
-- Continuous integration runs linting, typing, testing, audits, and docs builds across Python 3.10–3.13.
-- A manual "Codex Exec" workflow is available to run scripted maintenance tasks in CI.
+Following these practices keeps the project approachable for new contributors and reduces
+regression risk.
