@@ -52,7 +52,7 @@ deepresearch --config-name=config_with_modes question="Your question" app_mode=m
 ```bash
 # Install uv if not already installed
 # Windows:
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+powershell -ExecutionPolicy Bypass -c "irm https://astral.sh/uv/install.ps1 | iex"
 
 # macOS/Linux:
 curl -LsSf https://astral.sh/uv/install.sh | sh
