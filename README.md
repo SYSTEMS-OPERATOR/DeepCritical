@@ -26,6 +26,20 @@ uv run deepresearch question="Optimize research quality" app_mode=loss_driven
 uv run deepresearch --config-name=config_with_modes question="Your question" app_mode=multi_level_react
 ```
 
+## 📚 Documentation
+
+The project ships with a MkDocs site backed by `mkdocstrings`.
+
+```bash
+# Build the documentation locally
+uv run mkdocs build
+
+# Live preview while editing docs
+uv run mkdocs serve -a localhost:8000
+```
+
+See `mkdocs.yml` and the `docs/` directory for the full table of contents covering architecture, flows, configuration recipes, and API references.
+
 ### Using pip (Legacy)
 
 ```bash

@@ -18,7 +18,6 @@ dependencies = [
   "pydantic-ai>=0.0.16",
   "pydantic-graph>=0.2.0",
   "python-dateutil>=2.9.0.post0",
-  "testcontainers",
   "trafilatura>=2.0.0",
 ]
 
@@ -28,6 +27,13 @@ dev = [
   "pytest>=7.0.0",
   "pytest-asyncio>=0.21.0",
   "pytest-cov>=4.0.0",
+  "bandit>=1.7.0",
+  "mypy>=1.11.0",
+  "pip-audit>=2.7.3",
+  "pycycle>=0.0.7,<0.0.9",
+  "mkdocs>=1.6.0",
+  "mkdocs-material>=9.5.0",
+  "mkdocstrings[python]>=0.25.0",
 ]
 
 [project.scripts]
@@ -40,9 +46,6 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["DeepResearch"]
 
-[tool.uv.sources]
-testcontainers = { git = "https://github.com/josephrp/testcontainers-python.git", rev = "vllm" }
-
 [dependency-groups]
 dev = [
   "ruff>=0.6.0",
@@ -50,6 +53,42 @@ dev = [
   "pytest-asyncio>=0.21.0",
   "pytest-cov>=4.0.0",
   "bandit>=1.7.0",
+  "mypy>=1.11.0",
+  "pip-audit>=2.7.3",
+  "pycycle>=0.0.7,<0.0.9",
+  "mkdocs>=1.6.0",
+  "mkdocs-material>=9.5.0",
+  "mkdocstrings[python]>=0.25.0",
 ]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 88
+extend-select = ["B", "C4", "I", "UP"]
+target-version = "py310"
+exclude = ["uv.lock"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+strict = true
+
+[tool.pytest.ini_options]
+addopts = "-q -ra"
+xfail_strict = true
+testpaths = ["tests"]
+filterwarnings = [
+  "default",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["DeepResearch"]
+
+[tool.coverage.report]
+fail_under = 80
 
 

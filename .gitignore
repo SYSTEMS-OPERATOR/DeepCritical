@@ -1,7 +1,6 @@
 example
 .cursor
 outputs
-docs
 .claude/
 test_artifacts/
 bandit-report.json
